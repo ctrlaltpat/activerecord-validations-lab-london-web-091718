@@ -7,8 +7,8 @@ class Post < ActiveRecord::Base
   validate :clickbait
 
   def clickbait
-    checks = [/Won't Believe/i, /Secret/i, /Top [0-9]*/i, /Guess/i]
-    clickbaity = checks.any? { |check| check.match title }
+    clickbaity_words = [/Won't Believe/i, /Secret/i, /Top [0-9]*/i, /Guess/i]
+    clickbaity = clickbaity_words.any? { |word| word.match title }
     # binding.pry
     if !clickbaity
       errors.add(:title, "Not Clickbait-y")
